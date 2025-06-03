@@ -1,0 +1,11 @@
+com\idat\student\infraestructure\adapters\student\StudentMapper.class
+com\idat\student\infraestructure\entries\StudentController.class
+com\idat\student\infraestructure\adapters\student\StudentMapperImpl.class
+com\idat\student\domain\model\Student.class
+com\idat\student\domain\service\StudentServiceImpl.class
+com\idat\student\domain\model\StudentRepository.class
+com\idat\student\domain\service\StudentService.class
+com\idat\student\infraestructure\adapters\student\StudentData.class
+com\idat\student\infraestructure\adapters\student\StudentDataRepository.class
+com\idat\student\infraestructure\adapters\student\StudentAdapter.class
+com\idat\student\StudentApplication.class
