@@ -1,0 +1,161 @@
+{
+	"info": {
+		"name": "EC1 - Tarea3 API Tests",
+		"description": "Colección de pruebas para Evaluación Continua 1 - IDAT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GET - Listar todas las personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons"]
+				},
+				"description": "Obtiene la lista completa de personas registradas con sus relaciones (documento, direcciones)"
+			}
+		},
+		{
+			"name": "2. POST - Crear persona COMPLETA",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"fechaNacimiento\": \"1990-05-15\",\n  \"correo\": \"juan.perez@email.com\",\n  \"pais\": \"Peru\",\n  \"mascota\": {\n    \"nombre\": \"Firulais\",\n    \"edad\": 3\n  },\n  \"documento\": {\n    \"tipoDocumento\": \"DNI\",\n    \"numeroDocumento\": \"12345678\",\n    \"fechaExpedicion\": \"2015-01-01\",\n    \"fechaVencimiento\": \"2025-01-01\"\n  },\n  \"direcciones\": [\n    {\n      \"calle\": \"Av. Principal\",\n      \"numero\": \"123\",\n      \"ciudad\": \"Lima\",\n      \"provincia\": \"Lima\",\n      \"codigoPostal\": \"15001\",\n      \"tipoDireccion\": \"Casa\"\n    },\n    {\n      \"calle\": \"Jr. Comercio\",\n      \"numero\": \"456\",\n      \"ciudad\": \"Lima\",\n      \"provincia\": \"Lima\",\n      \"codigoPostal\": \"15002\",\n      \"tipoDireccion\": \"Trabajo\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons"]
+				},
+				"description": "Crea una persona con:\n- @ManyToOne: Mascota\n- @OneToOne: Documento\n- @OneToMany: Direcciones (2)"
+			}
+		},
+		{
+			"name": "3. POST - Crear otra persona",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"María\",\n  \"apellido\": \"García\",\n  \"fechaNacimiento\": \"1985-08-20\",\n  \"correo\": \"maria.garcia@email.com\",\n  \"pais\": \"Colombia\",\n  \"mascota\": {\n    \"nombre\": \"Michi\",\n    \"edad\": 2\n  },\n  \"documento\": {\n    \"tipoDocumento\": \"CE\",\n    \"numeroDocumento\": \"87654321\",\n    \"fechaExpedicion\": \"2018-03-10\",\n    \"fechaVencimiento\": \"2028-03-10\"\n  },\n  \"direcciones\": [\n    {\n      \"calle\": \"Calle Los Olivos\",\n      \"numero\": \"789\",\n      \"ciudad\": \"Bogotá\",\n      \"provincia\": \"Cundinamarca\",\n      \"codigoPostal\": \"110111\",\n      \"tipoDireccion\": \"Casa\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons"]
+				}
+			}
+		},
+		{
+			"name": "4. GET - Obtener persona por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons", "1"]
+				},
+				"description": "Obtiene una persona específica por su ID"
+			}
+		},
+		{
+			"name": "5. PUT - Actualizar persona",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Juan Carlos\",\n  \"apellido\": \"Pérez Rodríguez\",\n  \"fechaNacimiento\": \"1990-05-15\",\n  \"correo\": \"juancarlos.perez@email.com\",\n  \"pais\": \"Peru\",\n  \"mascota\": {\n    \"nombre\": \"Firulais\",\n    \"edad\": 4\n  },\n  \"documento\": {\n    \"tipoDocumento\": \"DNI\",\n    \"numeroDocumento\": \"12345678\",\n    \"fechaExpedicion\": \"2015-01-01\",\n    \"fechaVencimiento\": \"2030-01-01\"\n  },\n  \"direcciones\": [\n    {\n      \"calle\": \"Av. Principal ACTUALIZADA\",\n      \"numero\": \"123-A\",\n      \"ciudad\": \"Lima\",\n      \"provincia\": \"Lima\",\n      \"codigoPostal\": \"15001\",\n      \"tipoDireccion\": \"Casa\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons", "1"]
+				},
+				"description": "Actualiza los datos de una persona existente"
+			}
+		},
+		{
+			"name": "6. GET - Buscar por país (Peru)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/search/country?pais=Peru",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons", "search", "country"],
+					"query": [
+						{
+							"key": "pais",
+							"value": "Peru"
+						}
+					]
+				},
+				"description": "Busca todas las personas de un país específico"
+			}
+		},
+		{
+			"name": "7. DELETE - Eliminar persona",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/2",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons", "2"]
+				},
+				"description": "Elimina una persona por su ID (elimina en cascada documento y direcciones)"
+			}
+		},
+		{
+			"name": "8. GET - Verificar eliminación",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/2",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v1", "persons", "2"]
+				},
+				"description": "Intenta obtener la persona eliminada (debe retornar 404)"
+			}
+		}
+	]
+}
